@@ -1,0 +1,269 @@
+
+@mixin respond-phone {
+  @media (max-width: 37.5em) { @content};     // = 600px/16px
+}
+
+*, 
+*::after,
+*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit; 
+}
+
+html {
+    // 1rem = 10px
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 1.4rem;
+    color: rgb(87, 86, 86);
+    background-color: rgb(234, 231, 241);
+
+}
+
+.section-pricing:before {
+    content: '';
+    width: 100%;
+    background-color: rgb(216, 210, 235);
+    position: absolute;
+    height: 40vh;
+    top: 0;
+    right: 0;
+    border-bottom-left-radius: 100px;
+    z-index: -1000;
+
+    @include respond-phone {
+      height: 60vh;
+    }
+}
+
+.heading-primary{
+  font-size: 2.7rem;
+  color: rgb(28, 28, 121);
+
+  @include respond-phone {
+    font-size: 3rem;
+  }
+}
+
+.pricing {
+
+  &__title {
+    text-align: center;
+    margin: 8rem auto;
+    
+    @include respond-phone {
+      margin: 5rem auto;
+    }
+
+    &--main {
+      display: block;
+      font-size: 2.7rem;
+
+      @include respond-phone {
+        font-size: 2.3rem;
+      }
+    }
+
+    &--sub {
+        display: block;
+        font-size: 1.3rem;
+
+        @include respond-phone {
+          font-size: 1.2rem;
+        }
+    }
+  }   
+}
+
+.pricing-box {
+  margin: 0 auto;
+  max-width: 30rem;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0rem 1rem 2rem rgba(0,0,0,0.1);
+  padding: 5rem;
+  flex-direction: column;
+
+  @include respond-phone {
+    max-width: 60%;
+  }
+
+  &__pageviews {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: .3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    @include respond-phone {
+      order: 2;
+      margin: 0;
+    }
+
+    &--main {
+      display: inline-block;
+    }
+
+    &--sub {
+    display: inline-block;
+    }
+  }
+
+  &__bottom {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: .1rem solid #d3d3d3;
+    padding-top: 2rem;
+
+    @include respond-phone {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &--left {
+      @include respond-phone {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  &__gain {
+    :not(:last-child) {
+      margin-bottom: .7rem;
+    }
+
+    i {
+      margin-right: 1rem;
+      color: #16a085;
+    }
+  }
+
+}
+
+.order-sm {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  text-decoration: none;
+  padding: .8rem 2.4rem;
+  border-radius: 6rem;
+  background-color: rgb(28, 28, 121);
+  color: white;
+
+  @include respond-phone {
+    padding: 1rem 2.6rem;
+  }
+}
+
+.pricing-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: .5rem;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: .8;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  display: flex;
+
+  @include respond-phone {
+    order: 1;
+    margin-bottom: 2rem;
+
+  }
+  
+  &:hover {
+    opacity: 1;
+  }
+  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: 50%;
+    box-shadow: 0rem 1rem 1.5rem #2ec8aa;
+    background: url(../img/arrows-alt-h-solid.svg) #16a085;
+    border: 4px solid #16a085;
+    cursor: pointer;
+    position: relative; 
+  }
+  
+  &::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #16a085;
+    cursor: pointer;
+  }
+}
+
+.switch {
+  margin: 3.4rem auto;
+  display: flex;
+  justify-content: center;
+
+  @include respond-phone {
+    margin: 2rem auto;
+  }
+
+  &__checkbox {
+    // opacity: 0;
+    // width: 0;
+    // height: 0;
+    display: none;
+
+    &:checked ~ .switch__switcher::before {
+      transform: translateX(1.6rem);
+    }
+
+    &:checked ~ .switch__switcher {
+      background-color: rgba(28, 28, 121, .5);
+    }
+  }
+
+  &__switcher {
+    width: 3.4rem;
+    height: 1.8rem;
+    display: inline-block;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    background-color: #ccc;
+    margin: auto .6rem;
+
+    &::before {
+      content: '';
+      border-radius: 50%;
+      height: 1.2rem;
+      width: 1.2rem;
+      background-color: white;
+      position: absolute;             
+      top: .3rem;
+      left: .25rem; 
+      z-index: 100000;
+      display: inline-block;
+      transition: all .4s;
+    }
+  }
+}
